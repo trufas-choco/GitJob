@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-def index(request):
-    return render(request, 'app/index.html')
 
-def hola(request):
-    return HttpResponse("HOLAAAAAAA!!!!!!")
+def menu_usuario(request):
+    return render(request, 'menu_usuario.html')
+def otro_template(request):
+    return render(request, 'otro_template.html')
