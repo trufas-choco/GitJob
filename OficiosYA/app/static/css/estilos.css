@@ -1,0 +1,29 @@
+.logo {
+ margin-left: 30px;
+ margin-top: 30px;
+
+}
+
+.incio {
+ margin-left: 50px;
+}
+
+body {
+ background-color: #ffffff;
+ color: white;
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+}
+
+h1 {
+ color: #000000;
+ /* color del logo */
+ text-align: center;
+}
+
+
+.difuminada {
+ border-radius: 20px;
+ box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}

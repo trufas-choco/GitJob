@@ -1,17 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
 <head>
- <title>Menú Usuario</title>
+ <title>OficiosYA</title>
+ <link rel="icon" type="image/png" href="{% static 'img/logo_oficiosYA.png' %}">
+ <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 </head>
 
-<body>
- <h1>Bienvenido al menú</h1>
 
- <!-- Botón que lleva al otro template -->
- <form action="{% url 'otro_template' %}">
-  <button type="submit">Ir a otra página</button>
- </form>
+<body>
+ <di>
+  <img src="{% static 'img/logo_oficiosYA.png' %}" alt="Logo" width="150" class="difuminada logo">
+  <img src="{% static 'img/inicio.png' %}" alt="Inicio" width="110" class="difuminada incio">
+  <img src="{% static 'img/algo1.png' %}" alt="algo1" width="110" class="difuminada ">
+  <img src="{% static 'img/algo2.png' %}" alt="algo2" width="110" class="difuminada ">
+  </div>
+  <div>
+   <h1>HOLA GRUPO 1</h1>
+
+  </div>
 </body>
 
 </html>
