@@ -1,25 +1,9 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
 
-<head>
- <title>OficiosYA</title>
- <link rel="icon" type="image/png" href="{% static 'img/logo_oficiosYA.png' %}">
- <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
-</head>
+{% block title %}Menú de Usuario - OficiosYA{% endblock %}
 
-
-<body>
- <di>
-  <img src="{% static 'img/logo_oficiosYA.png' %}" alt="Logo" width="150" class="difuminada logo">
-  <img src="{% static 'img/inicio.png' %}" alt="Inicio" width="110" class="difuminada incio">
-  <img src="{% static 'img/algo1.png' %}" alt="algo1" width="110" class="difuminada ">
-  <img src="{% static 'img/algo2.png' %}" alt="algo2" width="110" class="difuminada ">
-  </div>
-  <div>
-   <h1>HOLA GRUPO 1</h1>
-
-  </div>
-</body>
-
-</html>
+{% block content %}
+<h1>Bienvenido al menú de usuario</h1>
+<p>Aquí puedes acceder a tus opciones personales.</p>
+{% endblock %}

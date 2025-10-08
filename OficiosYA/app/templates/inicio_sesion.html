@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Iniciar sesión</title>
+ <link rel="stylesheet" href="{% static 'css/estilos.css' %}?v=1">
+</head>
+
+<body>
+ <main class="card" role="main" aria-labelledby="title">
+  <div class="brand" aria-hidden="true">
+   <div class="brand-logo">OY</div>
+   <div>
+    <h1 id="title">Iniciar sesión</h1>
+    <p class="desc">Accede a tu cuenta con tu correo y contraseña.</p>
+   </div>
+  </div>
+
+  <form id="login-form" method="post" novalidate>
+   {% csrf_token %}
+
+   <label for="email">Correo electrónico</label>
+   <div class="field">
+    <input id="email" name="email" type="email" placeholder="tucorreo@ejemplo.com" autocomplete="username" required>
+   </div>
+
+   <label for="password">Contraseña</label>
+   <div class="field">
+    <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required
+     minlength="6">
+    <span id="toggle" class="toggle" aria-label="Mostrar u ocultar contraseña" title="Mostrar/ocultar">👁️</span>
+   </div>
+
+   <div class="row">
+
+    <a href="#" onclick="alert('Implementa tu recuperación de contraseña aquí 🙂'); return false;">¿Olvidaste tu
+     contraseña?</a>
+   </div>
+
+   <button class="btn" type="submit">Entrar</button>
+   <div id="error" class="error" role="alert">Revisa tu correo y contraseña (mínimo 6 caracteres).</div>
+   <p class="hint"></p>
+  </form>
+
+  <footer>© <span id="year"></span> OficiosYA</footer>
+ </main>
+
+ <script src="{% static 'js/login.js' %}?v=1"></script>
+</body>
+
+</html>
