@@ -8,3 +8,9 @@ def otro_template(request):
     return render(request, 'otro_template.html')
 def inicio_sesion(request):
     return render(request, 'inicio_sesion.html')
+    
+
+
+    #probando perfil))) pato
+def mi_perfil(request):
+     return render(request, 'perfil_pruebaa.html', {'u': request.user})
