@@ -39,7 +39,7 @@ body {
 
 .card {
  width: 100%;
- max-width: 380px;
+ max-width: 520 px;
  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
  border: 1px solid rgba(147, 170, 223, 0.15);
  border-radius: 18px;
@@ -179,3 +179,34 @@ footer {
  color: var(--muted);
  text-align: center
 }
+    /* HEADER base.html */
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 22px;
+  background:transparent; /* deja ver el fondo oscuro */
+}
+
+.header .logo img{
+  display:block;
+}
+
+.menu a.btn-pill,
+.menu a.btn-pill:visited {
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  background:#3b5bff;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 6px 18px rgba(59,91,255,.35);
+}
+.menu a.btn-pill:hover{
+  opacity:.9;
+}
+
+/* Opcional: que el main no quede pegado al header */
+main{ margin-top: 8px; }
+
