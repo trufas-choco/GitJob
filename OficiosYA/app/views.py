@@ -9,7 +9,8 @@ def otro_template(request):
 def inicio_sesion(request):
     return render(request, 'inicio_sesion.html')
     
-
+def feed(request):
+    return render(request, 'prueba_feed.html')
 
     #probando perfil))) pato
 def mi_perfil(request):
