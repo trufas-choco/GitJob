@@ -1,0 +1,15 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: center;
+    justify-content:center;
+}
+
+body.loggin{
+    background-color: #1A237E;
+
+}
+
+.logo {
+    color: #ffffff;
+    align-self: center
+}
