@@ -11,6 +11,8 @@ def inicio_sesion(request):
     
 def feed(request):
     return render(request, 'prueba_feed.html')
+def tipousuario(request):
+    return render(request, 'tipousuario.html')
 
     #probando perfil))) pato
 def mi_perfil(request):

@@ -1,0 +1,237 @@
+/* --- Estilos Globales (SOLO PARA EL FEED) --- */
+/* * Ahora se aplica solo al body CON la clase 'feed-scope'.
+ * Se añadió un 'color' para anular el texto claro del modo oscuro.
+*/
+body.feed-scope {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5; /* Color de fondo gris claro */
+    color: #333; /* ANULA el color de texto claro del otro CSS */
+    /* Se quitan los estilos de 'display: grid' y 'place-items' del otro archivo */
+}
+
+.feed-scope a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* * Anulamos el 'margin-top' del otro archivo y 
+ * aplicamos los estilos de padding/max-width solo al 'main' del feed.
+*/
+.feed-scope main {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto; /* Centra el contenido */
+}
+
+/* --- Encabezado Principal (SOLO PARA EL FEED) --- */
+.feed-scope .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dbdbdb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.feed-scope .main-header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.feed-scope .main-header .search-bar {
+    flex-grow: 1;
+    margin: 0 2rem;
+}
+
+/* * Estos estilos de input anularán los del modo oscuro
+ * porque son más específicos (.feed-scope .main-header ... input)
+*/
+.feed-scope .main-header .search-bar input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background: #efefef; /* Fondo claro */
+    color: #333; /* Texto oscuro */
+    outline: none;
+    transition: border .15s, box-shadow .15s;
+    font-size: 1rem;
+}
+
+.feed-scope .main-header .search-bar input:focus {
+    border-color: #007bff; /* Borde azul al enfocar */
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+
+.feed-scope .main-header .nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.feed-scope .main-header .nav-buttons .profile-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.feed-scope .main-header .nav-buttons .publish-button {
+    padding: 0.75rem 1.25rem;
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 0;
+    transition: transform .04s ease, background .15s ease;
+}
+
+.feed-scope .main-header .nav-buttons .publish-button:hover {
+    background-color: #0069d9;
+}
+.feed-scope .main-header .nav-buttons .publish-button:active {
+    transform: translateY(1px);
+}
+
+
+/* --- Página 1: Inicio (inicio.html) --- */
+.feed-scope .welcome-message {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #222; /* Asegura color oscuro */
+}
+
+.feed-scope .feed-tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 2rem;
+}
+
+.feed-scope .feed-tabs .tab {
+    padding: 0.5rem 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #8e8e8e;
+    border-bottom: 3px solid transparent;
+}
+
+.feed-scope .feed-tabs .tab.active {
+    color: #262626;
+    border-bottom-color: #262626;
+}
+
+.feed-scope .category-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #222; /* Asegura color oscuro */
+}
+
+/* --- Página 2: Resultados (resultados.html) --- */
+.feed-scope .filter-bar {
+    margin-bottom: 1.5rem;
+}
+
+.feed-scope .filter-bar .filter-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    color: #333; /* Asegura color oscuro */
+}
+
+.feed-scope .results-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.feed-scope .results-header h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: #222; /* Asegura color oscuro */
+}
+
+.feed-scope .results-header .results-count {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #8e8e8e;
+}
+
+/* --- Componente: Tarjeta de Producto (Product Card) --- */
+/* Esta clase '.product-card' no entra en conflicto con '.card' del otro archivo */
+.feed-scope .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.feed-scope .product-card {
+    background-color: #ffffff;
+    border: none; /* Anula el borde del otro .card si acaso */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Anula el padding del otro .card */
+    backdrop-filter: none; /* Anula el blur */
+}
+
+.feed-scope .product-card .card-image {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.feed-scope .product-card .profile-icon {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #c9a9a6;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.feed-scope .product-card .profile-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: #fdfdfd;
+}
+
+
+.feed-scope .product-card .card-info {
+    padding: 1rem;
+    background: #fff; /* Asegura fondo blanco */
+}
+
+.feed-scope .product-card .card-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: #333; /* Asegura color oscuro */
+}
+
+.feed-scope .product-card .card-info .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}

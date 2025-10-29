@@ -9,6 +9,7 @@ urlpatterns = [
      # cambia 'hola' por tu vista real si ya tienes otra
 
     path('feed/', views.feed, name='feed'),
+    path('tipousuario', views.tipousuario, name='tipousuario'),
     #pato (perfil)
     path('perfil/', views.mi_perfil, name='mi_perfil'),
 ]
