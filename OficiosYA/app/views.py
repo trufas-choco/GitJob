@@ -13,6 +13,10 @@ def feed(request):
     return render(request, 'prueba_feed.html')
 def tipousuario(request):
     return render(request, 'tipousuario.html')
+def perfilusuario(request):
+    return render(request, 'perfilusuario.html')
+def feedfinal(request):
+    return render(request, 'feedfinal.html')
 
     #probando perfil))) pato
 def mi_perfil(request):

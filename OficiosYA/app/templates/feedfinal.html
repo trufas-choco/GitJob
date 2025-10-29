@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Feed</title>
+ <link rel="stylesheet" href="{% static 'css/estilos.css' %}?v=1">
+</head>
+
+<body>
+ <main class="card" role="main" aria-labelledby="title">
+  <div class="brand" aria-hidden="true">
+
+    <h1 id="title">Feed</h1>
+    <p class="desc">Publicaciones de personas:</p>
+   </div>
+  </div>
+
+  <form id="login-form" method="post" novalidate>
+            {% csrf_token %}
+            <button class="btn" type="submit">Publicar</button>
+            <div class="row"></div>
+            <div class="field">
+                <input id="busqueda" name="busqueda" type="busqueda" placeholder="Buscar" autocomplete="current-password" required minlength="6" />
+
+                <button type="submit" class="toggle" title="Buscar" aria-label="Buscar">&#128269;</button>
+            </div>
+
+            <div class="row">
+                <button class="btn" type="submit">Mensajes</button>
+                <button class="btn" type="submit">Perfil☺︎</button>
+            </div>
+
+            
+        </form>
+<br>
+<h1 id="title">Bienvenid@ de nuevo """"</h1>
+<h4 id="title">Ofertas</h4>
+<div class="producto-row">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="Producto-imagen" width="200" height="200">
+        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTnjuA7pyKRxXwNLunQxra11NQfJLkbum3w6yhRrUukHQDRv81VJ1jCXvicpPqpE7Atxz4hiC7WcIW35yh1TslpZhzNvn3W6peQOU29LW8" alt="Producto" class="Producto-imagen" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRjYtrAuqNtAs-ybK6ARDR6B74Z6LlMLYRICtZjra8jBAv5tHL1NCL78OD0bWJ6SPb08QmYVqSlUZxqk4PV3wc2OLY7e69DQa63lgUqSf8" alt="Producto" class="Producto-imagen" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="Producto-imagen" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="Producto-imagen" width="200" height="200">
+<h4 id="title">Productos 1</h4>
+<div class="producto-row"></div>
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTnjuA7pyKRxXwNLunQxra11NQfJLkbum3w6yhRrUukHQDRv81VJ1jCXvicpPqpE7Atxz4hiC7WcIW35yh1TslpZhzNvn3W6peQOU29LW8" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRjYtrAuqNtAs-ybK6ARDR6B74Z6LlMLYRICtZjra8jBAv5tHL1NCL78OD0bWJ6SPb08QmYVqSlUZxqk4PV3wc2OLY7e69DQa63lgUqSf8" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="logo" width="200" height="200">
+<h4 id="title">Productos 2</h4>
+<div class="producto-row"></div>
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTnjuA7pyKRxXwNLunQxra11NQfJLkbum3w6yhRrUukHQDRv81VJ1jCXvicpPqpE7Atxz4hiC7WcIW35yh1TslpZhzNvn3W6peQOU29LW8" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRjYtrAuqNtAs-ybK6ARDR6B74Z6LlMLYRICtZjra8jBAv5tHL1NCL78OD0bWJ6SPb08QmYVqSlUZxqk4PV3wc2OLY7e69DQa63lgUqSf8" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="logo" width="200" height="200">
+ <h4 id="title">Productos 3</h4>
+ <div class="producto-row"></div>
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTnjuA7pyKRxXwNLunQxra11NQfJLkbum3w6yhRrUukHQDRv81VJ1jCXvicpPqpE7Atxz4hiC7WcIW35yh1TslpZhzNvn3W6peQOU29LW8" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRjYtrAuqNtAs-ybK6ARDR6B74Z6LlMLYRICtZjra8jBAv5tHL1NCL78OD0bWJ6SPb08QmYVqSlUZxqk4PV3wc2OLY7e69DQa63lgUqSf8" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="logo" width="200" height="200">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSGdA4A9b-o1uTs7JWpXvgpKmy64pE-BPuOSb_c9MyKTe_jTy5ZkeyO8HUKDA1zJkM0ORIpiXY71YO-8Aj9uw4ZAVKG2DvPO6EaJ6afdiroJ3b2I8QvkF3p" alt="Producto" class="logo" width="200" height="200">
+<button class="btn" type="submit">Actualizar</button>
+    </main>
+
+ <script src="{% static 'js/login.js' %}?v=1"></script>
+</body>
+
+</html>
