@@ -1,0 +1,68 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: center;
+    align-content: center;
+    justify-content:center;
+}
+
+body.loggin{
+    background-color: #181561;
+}
+
+body.reset{
+    background-color: #181561;
+}
+body.feed{
+    background-color: white;
+}
+
+.logo {
+    color: #181561;
+    text-align: center;
+    font-size: 40px;
+}
+
+.caja_reset{
+    
+    width: 500px;
+    height: 500px;
+    align-content: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0; 
+    border-radius: 20px;
+}
+.mi-caja {
+    
+    width: 500px;
+    height: 500px;
+    align-content: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0; 
+    border-radius: 20px;
+    
+}
+.input {
+    border-radius: 40px;
+}
+
+.aceptar{
+    
+    background: red;
+    width: 80px;
+    height: 30px;
+    border-radius: 20px;
+    align-content: center;
+    
+}
+
+
+.centro{
+    margin: 5px;
+    
+}
+
+.reset{
+    margin: 20px;
+}
