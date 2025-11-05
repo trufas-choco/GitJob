@@ -13,6 +13,6 @@ urlpatterns = [
     path('perfilusuario', views.perfilusuario, name='perfilusuario'),
     path('feedfinal', views.feedfinal, name='feedfinal'),
     #pato (perfil)
-    path('perfil', views.mi_perfil, name='mi_perfil'),
+    path('perfil/', views.mi_perfil, name='mi_perfil'),
     path('generar-aviso', views.generar_aviso, name='publicar')
 ]
