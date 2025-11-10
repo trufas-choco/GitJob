@@ -6,7 +6,7 @@ urlpatterns = [
     path('menu', views.menu_usuario, name='menu_usuario'),
     path('otro', views.otro_template, name='otro_template'),
     path('', views.inicio_sesion, name='inicio_sesion'),
-     # cambia 'hola' por tu vista real si ya tienes otra
+     # cambia 'hola' por tu vista real si ya tienes otra.
 
     path('feed', views.feed, name='feed'),
     path('tipousuario', views.tipousuario, name='tipousuario'),
