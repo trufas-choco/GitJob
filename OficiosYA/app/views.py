@@ -3,31 +3,20 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import requests
 
-def menu_usuario(request):
-    return render(request, 'menu_usuario.html')
-def otro_template(request):
-    return render(request, 'otro_template.html')
-def inicio_sesion(request):
-    return render(request, 'inicio_sesion.html')
-    
-def feed(request):
-    return render(request, 'prueba_feed.html')
-def tipousuario(request):
-    return render(request, 'tipousuario.html')
-def perfilusuario(request):
-    return render(request, 'perfilusuario.html')
-def feedfinal(request):
-    return render(request, 'feedfinal.html')
-
-    #probando perfil))) pato
-def mi_perfil(request):
-     return render(request, 'perfil_pruebaa.html', {'u': request.user})
+def login(request):
+    return render(request, 'index.html')
+def signup(request):
+    return render(request, 'signup.html')
+def reset(request):
+    return render(request, 'reset.html')
+def inicio(request):
+    return render(request, 'home.html')
 
 
 
 
 @csrf_exempt
-def generar_aviso(request):
+def publicacion(request):
     aviso = None
     error = None
     descripcion_inicial = ""
@@ -50,6 +39,7 @@ def generar_aviso(request):
                                            "para personas que ofrecen algo. Tu tarea es crear publicaciones claras, "
                                            "atractivas y confiables para que los potenciales clientes o trabajadores "
                                            "entiendan qué se ofrece. Escribe en español de Chile, con tono cercano y profesional."
+                                        
                             },
                             {
                                 "role": "user",
@@ -74,7 +64,7 @@ def generar_aviso(request):
             except Exception as e:
                 error = f"No pude generar el aviso: {e}"
 
-    return render(request, "generar_avisos.html", {
+    return render(request, "publicar.html", {
         "aviso": aviso,
         "error": error,
         "descripcion": descripcion_inicial

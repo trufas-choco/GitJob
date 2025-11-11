@@ -1,54 +1,72 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publicar - OficiosYA</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="bg-main">
 
     <div class="publicar-container">
         <header class="publicar-header">
             <h1 class="logo">oficios<span>YA.cl</span></h1>
-            <a href="home.html" class="btn-volver">&larr; Volver</a>
+            <a href="/inicio" class="btn-volver">&larr; Volver</a>
         </header>
 
         <main class="publicar-content">
 
             <aside class="publicar-info">
-                <h2>Recuerde incluir información como:</h2>
+                <h2>Recuerde incluir informacion como:</h2>
                 <ul>
                     <li>Tipo de producto</li>
                     <li>Margen de precios</li>
                     <li>Material</li>
                     <li>Tiempos estimados de entrega</li>
+                    <li>Contacto</li>
                 </ul>
             </aside>
 
-            <form class="publicar-form" action="home.html" method="GET">
+            <!-- tu formulario -->
+            <form class="publicar-form" action="{% url 'publicar' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <h2>¿Qué desea publicar?</h2>
-                
-                <textarea name="descripcion" placeholder="Escriba aquí la descripcion de su producto"></textarea>
-                
-                <div class="file-upload-wrapper">
-                    <input id="file-upload" type="file" multiple>
-                    
-                    <label for="file-upload" class="file-upload-label">
-                        <div class="file-icon-button">
-                            <span>🖼️</span> </div>
-                        <span class="file-upload-text">Agregar imagenes</span>
-                    </label>
-                </div>
 
-                <button type="submit" class="btn-primary">Aceptar</button>
+                <textarea id="descripcion" name="descripcion"
+                    placeholder="Escriba aquí la descripción de su producto">{{ descripcion }}</textarea>
+
+                <!-- … tu selector de imágenes y botones … -->
+                <button type="submit" class="btn-secondary">Generar con IA</button>
+                <button type="submit" class="btn-primary" formmethod="get" formaction="home.html">Aceptar</button>
             </form>
+
+            {% if error %}
+            <p style="color:#b00020;margin-top:1.5rem;">{{ error }}</p>
+            {% endif %}
+
+            {% if aviso %}
+            <!-- NOTA: usamos la misma clase 'publicar-form' para heredar estilos -->
+            <div class="publicar-form">
+                <h2>Resultado IA</h2>
+                <textarea id="ia-out">{{ aviso }}</textarea>
+
+                <button type="button" class="btn-secondary" style="margin-top:.5rem;"
+                    onclick="document.getElementById('descripcion').value = document.getElementById('ia-out').value.trim();">
+                    Pegar en la descripción
+                </button>
+            </div>
+            {% endif %}
+
 
         </main>
     </div>
 
 </body>
+
 </html>
