@@ -17,13 +17,14 @@ def publicar(request):
         nombre = request.POST['nombre']
         descripcion = request.POST['descripcion']
         imagen = request.FILES.get('imagen')  
+        mensaje_exito = "¡Tu producto se ha subido con éxito!"
         producto = Producto.objects.create(
             usuario=request.user,
             nombre=nombre,
             descripcion=descripcion,
             imagen=imagen
         )
-        return redirect('inicio')
+        return redirect('home.html')
     return render(request, 'publicar.html')
 
 
