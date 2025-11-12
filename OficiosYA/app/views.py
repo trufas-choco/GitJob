@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect 
+from .models import Producto
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import requests
@@ -11,7 +12,19 @@ def reset(request):
     return render(request, 'reset.html')
 def inicio(request):
     return render(request, 'home.html')
-
+def publicar(request):
+    if request.method == 'POST':
+        nombre = request.POST['nombre']
+        descripcion = request.POST['descripcion']
+        imagen = request.FILES.get('imagen')  
+        producto = Producto.objects.create(
+            usuario=request.user,
+            nombre=nombre,
+            descripcion=descripcion,
+            imagen=imagen
+        )
+        return redirect('inicio')
+    return render(request, 'publicar.html')
 
 
 
@@ -29,7 +42,7 @@ def publicacion(request):
             try:
                 # Llamada a la API local de Ollama
                 r = requests.post(
-                    "http://127.0.0.1:11434/api/chat",
+                    "http://127.0.0.1:11434/api/generate", #o poner chat
                     json={
                         "model": "llama3.2:3b",  # liviano y rápido
                         "messages": [
