@@ -1,13 +1,49 @@
 from django.shortcuts import render, redirect 
 from .models import Producto
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
 import requests
 
-def login(request):
-    return render(request, 'index.html')
+def login_view(request):
+    if request.method == 'POST':
+        username_from_form = request.POST.get('username')
+        password_from_form = request.POST.get('password')
+        user = authenticate(request, username=username_from_form, password=password_from_form)
+        if user is not None:
+            login(request, user)
+            return redirect('inicio')
+        else:
+            context = {'error': 'Nombre de usuario o contraseña incorrectos.'}
+            return render(request, 'index.html', context)
+    else:
+        return render(request, 'index.html')        
+
+
 def signup(request):
-    return render(request, 'signup.html')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        pass1 = request.POST.get('new-password')
+        pass2 = request.POST.get('confirm-password')
+        
+        if pass1 != pass2:
+            context = {'error': 'Las contraseñas no coinciden.'}
+            return render(request, 'signup.html', context)
+        if User.objects.filter(username=username).exists():
+            context = {'error': 'Ese nombre de usuario ya está en uso.'}
+            return render(request, 'signup.html', context)
+        try:
+            user = User.objects.create_user(username=username, password=pass1)
+            user.save()
+            login(request, user)
+            return redirect('inicio')
+
+        except Exception as e:
+            context = {'error': f'Ha ocurrido un error: {e}'}
+            return render(request, 'signup.html', context)
+    else:
+        return render(request, 'signup.html')
+  
 def reset(request):
     return render(request, 'reset.html')
 def inicio(request):
@@ -26,6 +62,7 @@ def publicar(request):
         )
         return redirect('home.html')
     return render(request, 'publicar.html')
+
 
 
 

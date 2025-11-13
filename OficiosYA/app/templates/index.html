@@ -17,8 +17,10 @@
         <h1 class="logo">
             oficios<span>YA.cl</span>
         </h1>
+        {{error}}
 
-        <form action="home.html" method="GET">
+        <form method="POST">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="username">Nombre de usuario</label>
                 <input type="text" id="username" name="username">
@@ -32,9 +34,11 @@
             </div>
             <button type="submit" class="btn-submit">Aceptar</button>
         </form>
+
+
         <div class="signup-box">
             <p>¿No tienes cuenta?</p>
-            <a href="/signup">Crea tu cuenta</a>
+            <a href="{% url 'signup' %}">Crea tu cuenta</a>
         </div>
     </main>
 </body>
