@@ -1,21 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - OficiosYA</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="bg-main">
 
     <header class="header-main">
         <h1 class="header-logo">oficios<span>YA.cl</span></h1>
         <nav class="navbar">
-            <a href="publicar.html" class="btn-publicar">PUBLICAR</a>
+            <a href="{% url 'login' %}" class="btn-volver">&larr; Volver</a>
+            <a href="/publicar" class="btn-publicar">PUBLICAR</a>
             
+
             <form action="#" class="search-form">
                 <input type="text" placeholder="Buscar">
                 <button type="submit">🔍</button>
@@ -38,19 +43,23 @@
             <h3>Ofertas</h3>
             <div class="scroll-container scroll-snap-x">
                 <article class="oferta-item">
-                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+1" alt="Oferta 1" class="oferta-img">
+                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+1" alt="Oferta 1"
+                        class="oferta-img">
                     <div class="card-bar"></div>
                 </article>
                 <article class="oferta-item">
-                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+2" alt="Oferta 2" class="oferta-img">
+                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+2" alt="Oferta 2"
+                        class="oferta-img">
                     <div class="card-bar"></div>
                 </article>
                 <article class="oferta-item">
-                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+3" alt="Oferta 3" class="oferta-img">
+                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+3" alt="Oferta 3"
+                        class="oferta-img">
                     <div class="card-bar"></div>
                 </article>
                 <article class="oferta-item">
-                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+4" alt="Oferta 4" class="oferta-img">
+                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+4" alt="Oferta 4"
+                        class="oferta-img">
                     <div class="card-bar"></div>
                 </article>
             </div>
@@ -58,20 +67,24 @@
 
         <section class="category-section bg-white">
             <h3 class="section-title">Cerca de ti</h3>
-            
+
             <h4>Albañería</h4>
             <div class="scroll-container scroll-snap-x">
                 <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+1" alt="Servicio Albañilería 1" class="item-img">
+                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+1"
+                        alt="Servicio Albañilería 1" class="item-img">
                 </article>
                 <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+2" alt="Servicio Albañilería 2" class="item-img">
+                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+2"
+                        alt="Servicio Albañilería 2" class="item-img">
                 </article>
                 <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+3" alt="Servicio Albañilería 3" class="item-img">
+                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+3"
+                        alt="Servicio Albañilería 3" class="item-img">
                 </article>
                 <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+4" alt="Servicio Albañilería 4" class="item-img">
+                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+4"
+                        alt="Servicio Albañilería 4" class="item-img">
                 </article>
             </div>
         </section>
@@ -80,20 +93,25 @@
             <h4>Carpintería</h4>
             <div class="scroll-container scroll-snap-x">
                 <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+1" alt="Servicio Carpintería 1" class="item-img">
+                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+1"
+                        alt="Servicio Carpintería 1" class="item-img">
                 </article>
                 <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+2" alt="Servicio Carpintería 2" class="item-img">
+                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+2"
+                        alt="Servicio Carpintería 2" class="item-img">
                 </article>
                 <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+3" alt="Servicio Carpintería 3" class="item-img">
+                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+3"
+                        alt="Servicio Carpintería 3" class="item-img">
                 </article>
                 <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+4" alt="Servicio Carpintería 4" class="item-img">
+                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+4"
+                        alt="Servicio Carpintería 4" class="item-img">
                 </article>
             </div>
         </section>
     </main>
 
 </body>
+
 </html>

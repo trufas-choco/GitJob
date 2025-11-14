@@ -1,21 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login OficiosYA</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="bg-blue">
     <main class="login-container">
         <h1 class="logo">
             oficios<span>YA.cl</span>
         </h1>
-        
-        <form action="home.html" method="GET">
+        {{error}}
+
+        <form method="POST">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="username">Nombre de usuario</label>
                 <input type="text" id="username" name="username">
@@ -29,10 +34,13 @@
             </div>
             <button type="submit" class="btn-submit">Aceptar</button>
         </form>
+
+
         <div class="signup-box">
             <p>¿No tienes cuenta?</p>
-            <a href="signup.html">Crea tu cuenta</a>
+            <a href="{% url 'signup' %}">Crea tu cuenta</a>
         </div>
     </main>
 </body>
+
 </html>
