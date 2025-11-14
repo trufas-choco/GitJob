@@ -1,39 +1,60 @@
-const form = document.getElementById('login-form');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const error = document.getElementById('error');
-const toggle = document.getElementById('toggle');
-const year = document.getElementById('year');
+document.addEventListener("DOMContentLoaded", function() {
 
-if (year) year.textContent = new Date().getFullYear();
+    const loginForm = document.getElementById("login-form");
+    const phone = document.getElementById("phone");
+    const password = document.getElementById("password");
+    const errorMessage = document.getElementById("error-message-login");
 
-if (toggle && password) {
- toggle.addEventListener('click', () => {
-  const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-  password.setAttribute('type', type);
-  toggle.textContent = type === 'password' ? '👁️' : '🙈';
- });
-}
+   
+    loginForm.addEventListener("submit", async function(event) {
+    
+        event.preventDefault(); 
+        
+        errorMessage.textContent = "";
 
-if (form) {
- form.addEventListener('submit', (e) => {
-  // Si usas autenticación del lado servidor, puedes quitar esta parte de demo
-  // y dejar que Django procese normalmente.
-  e.preventDefault();
+        
+        const phoneValue = phone.value;
+        const passwordValue = password.value;
 
-  const validEmail = email.value.trim().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-  const validPass = password.value.length >= 6;
+        if (!phoneValue || !passwordValue) {
+            mostrarError("Por favor, ingrese teléfono y contraseña.");
+            return;
+        }
 
-  if (!validEmail || !validPass) {
-   error.style.display = 'block';
-   return;
-  }
-  error.style.display = 'none';
 
-  // Aquí harías submit real si quieres:
-  // form.submit();
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+            
+                },
+                body: JSON.stringify({
+                    phone: phoneValue,
+                    password: passwordValue
+                })
+            });
 
-  // Demo:
-  alert('¡Inicio de sesión correcto! (demo)');
- });
-}
+            const data = await response.json();
+
+            if (response.ok) {
+        
+                console.log("Login exitoso. Redirigiendo...");
+                window.location.href = data.redirectUrl; 
+            } else {
+               
+                mostrarError(data.error); 
+            }
+
+        } catch (error) {
+           
+            console.error("Error de conexión:", error);
+            mostrarError("Error de conexión. Intente más tarde.");
+        }
+    });
+
+   
+    function mostrarError(mensaje) {
+        errorMessage.textContent = mensaje;
+    }
+});
