@@ -74,3 +74,11 @@ def api_user_me(request):
         'first_name': request.user.first_name,
         'username': request.user.username
     })
+
+# ... (al final del archivo, junto con las otras vistas)
+
+def registro(request):
+    """
+    Esta vista se encarga de mostrar la página de registro (account.html)
+    """
+    return render(request, 'account.html')
