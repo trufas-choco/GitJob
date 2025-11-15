@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title>Detalle de Publicación - OficiosYA</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -8,12 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="bg-main">
 
     <header class="header-main">
         <h1 class="header-logo"><a href="{% url 'feed' %}">oficios<span>YA.cl</span></a></h1>
         <nav class="navbar">
-            <a href="{% url 'publicar' %}" class="btn-publicar">PUBLICAR</a>            
+            <a href="{% url 'publicar' %}" class="btn-publicar">PUBLICAR</a>
             <form action="#" class="search-form">
                 <input type="text" placeholder="Buscar">
                 <button type="submit">🔍</button>
@@ -29,13 +31,13 @@
     </header>
 
     <main class="content-wrapper detalle-container">
-        
+
         <div class="detalle-grid">
-            
+
             <div class="detalle-main">
                 <div class="detalle-carrusel">
                     <img src="{{ publicacion.imagen.url }}" alt="{{ publicacion.descripcion|truncatewords:5 }}">
-                    
+
                 </div>
                 <div class="detalle-info-box precio">
                     <label>precio</label>
@@ -44,13 +46,6 @@
                 <div class="detalle-info-box lugar">
                     <label>lugar</label>
                     <span>{{ publicacion.region | default:"Ubicación no proporcionada" }}</span>
-                </div>
-            </div>
-
-            <div class="detalle-side">
-                <div class="detalle-descripcion">
-                    <label>descripción</label>
-                    <p>{{ publicacion.descripcion }}</p>
                 </div>
                 <div class="detalle-info-box vendedor">
                     <label>Nombre Vendedor</label>
@@ -61,8 +56,16 @@
                 </div>
             </div>
 
+            <div class="detalle-side">
+                <div class="detalle-descripcion">
+                    <label>descripción</label>
+                    <p>{{ publicacion.descripcion }}</p>
+                </div>
+            </div>
+
         </div>
     </main>
 
 </body>
+
 </html>

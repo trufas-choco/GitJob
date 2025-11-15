@@ -8,6 +8,7 @@ from geopy.geocoders import Nominatim
 from .models import Publicacion
 import json
 import math
+import requests
 
 # --- Vistas de Plantillas ---
 
@@ -29,37 +30,94 @@ def inicio_sesion(request):
 @login_required 
 def publicar(request):
     """
-    Maneja MOSTRAR la página (GET) y GUARDAR la publicación (POST).
-    Esta es la ÚNICA versión de esta función.
+    GET  -> muestra la página
+    POST -> según el botón:
+            - 'generate_ia': genera texto con IA y solo recarga el formulario
+            - sin 'generate_ia': intenta guardar la publicación
     """
+    descripcion_context = ""
+    error = None
+
     if request.method == 'POST':
+
+        # ==============================
+        # 1) BOTÓN: "Generar Con IA"
+        # ==============================
+        if 'generate_ia' in request.POST:
+            descripcion_inicial = request.POST.get('descripcion', '').strip()
+            precio_raw = request.POST.get('precio', '').strip() 
+            print(">>> [IA] POST:", request.POST)  # para ver en consola
+            print(">>> [IA] descripcion entrada:", descripcion_inicial)
+
+            if not descripcion_inicial:
+                return render(request, 'publicar.html', {
+                    'descripcion': '',
+                    'error': 'Escriba una descripción breve antes de usar la IA.',
+                })
+
+            try:
+                r = requests.post(
+                    "http://localhost:11434/api/chat",
+                    json={ "model": "llama3.2:3b", "messages": [ 
+                        { "role": "system", "content": 
+                         ( "Eres un asistente experto en redacción de avisos laborales y de servicios para Chile. Tu estilo es claro, profesional, cercano y persuasivo, evitando textos genéricos o exagerados." ) }, 
+                         { "role": "user", "content": ( "Genera un aviso atractivo y claro en base a esta descripción:\n\n" f"{descripcion_inicial}\n\n" "Incluye:\n" 
+                                                       "TÍTULO:\n" "DESCRIPCIÓN:\n" ) } ],
+                                                        "stream": False, "options": {"temperature": 0.4, "num_ctx": 500} },
+                    timeout=60
+                )
+                print("Status:", r.status_code)
+
+                data = r.json()
+                descripcion_generada = data["message"]["content"].strip()
+                descripcion_context = descripcion_generada
+                print(">>> [IA] descripcion salida:", descripcion_context)
+                
+
+            except Exception as e:
+                print(f"Error con Ollama: {e}")
+                error = "No se pudo conectar con la IA. Verifique que Ollama esté corriendo."
+                descripcion_context = descripcion_inicial
+
+            # IMPORTANTE: aquí SOLO recargamos el formulario, NO guardamos nada
+            return render(request, 'publicar.html', {
+                'descripcion': descripcion_context,
+                'precio': precio_raw,
+                'error': error,
+               
+            })
+
+        # ==============================
+        # 2) BOTÓN: "Aceptar" (publicar)
+        # ==============================
         try:
             descripcion = request.POST.get('descripcion')
             precio = request.POST.get('precio')
             imagenes = request.FILES.getlist('imagen')
             lat_val = request.POST.get('latitude')
             lon_val = request.POST.get('longitude')
-            
+
             primera_imagen = imagenes[0] if imagenes else None
 
             if not primera_imagen:
-                context = {'error': 'Debes subir al menos una imagen.'}
+                context = {
+                    'error': 'Debes subir al menos una imagen.',
+                    'descripcion': descripcion or ''
+                }
                 return render(request, 'publicar.html', context)
 
-            # --- LÓGICA DE GEOCODIFICACIÓN (ESTO FALTABA) ---
+            # ----- GEOCODING -----
             region_nombre = None
             if lat_val and lon_val:
                 try:
-                    # Debes usar un user_agent único (el nombre de tu app)
                     geolocator = Nominatim(user_agent="oficiosya_app")
                     location = geolocator.reverse((lat_val, lon_val), language='es')
-                    
+
                     if location and 'state' in location.raw['address']:
-                        # 'state' usualmente contiene la región en Chile
                         region_nombre = location.raw['address']['state']
                 except Exception as e:
-                    print(f"Error de Geocoding: {e}") # Deja un log en tu terminal si falla
-            # --- FIN DE LA LÓGICA ---
+                    print(f"Error de Geocoding: {e}")
+            # ----------------------
 
             Publicacion.objects.create(
                 usuario=request.user,
@@ -68,17 +126,24 @@ def publicar(request):
                 imagen=primera_imagen,
                 latitude=float(lat_val) if lat_val else None,
                 longitude=float(lon_val) if lon_val else None,
-                region=region_nombre # <-- AHORA SÍ GUARDA LA REGIÓN
+                region=region_nombre
             )
-            
+
             return redirect('feed')
-        
+
         except Exception as e:
-            context = {'error': f'Error al publicar: {e}'}
+            context = {
+                'error': f'Error al publicar: {e}',
+                'descripcion': request.POST.get('descripcion', '')
+            }
             return render(request, 'publicar.html', context)
 
-    # Lógica GET (solo mostrar la página)
-    return render(request, 'publicar.html')
+    # GET: página vacía
+    return render(request, 'publicar.html', {
+        'descripcion': '',
+        'error': None,
+    })
+
 
 def registro(request):
     """
