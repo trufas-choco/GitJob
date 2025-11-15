@@ -13,8 +13,7 @@
     <header class="header-main">
         <h1 class="header-logo">oficios<span>YA.cl</span></h1>
         <nav class="navbar">
-            <a href="publicar.html" class="btn-publicar">PUBLICAR</a>
-            
+            <a href="{% url 'publicar' %}" class="btn-publicar">PUBLICAR</a>            
             <form action="#" class="search-form">
                 <input type="text" placeholder="Buscar">
                 <button type="submit">🔍</button>
@@ -34,68 +33,66 @@
         <h2 class="welcome-title" id="welcome-user">Bienvenid@ denuevo</h2>
 
         <section class="category-section">
-            <h3>Ofertas</h3>
+           <h3>Ofertas</h3>
             <div class="scroll-container scroll-snap-x">
+                
+                {% for p in publicaciones %}
                 <article class="oferta-item">
-                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+1" alt="Oferta 1" class="oferta-img">
-                    <div class="card-bar"></div>
+                    <img src="{{ p.imagen.url }}" alt="Publicación de {{ p.usuario.first_name }}" class="oferta-img">
+                    <div class="oferta-price">
+                        ${{ p.precio }}
+                    </div>
                 </article>
-                <article class="oferta-item">
-                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+2" alt="Oferta 2" class="oferta-img">
-                    <div class="card-bar"></div>
-                </article>
-                <article class="oferta-item">
-                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+3" alt="Oferta 3" class="oferta-img">
-                    <div class="card-bar"></div>
-                </article>
-                <article class="oferta-item">
-                    <img src="https://via.placeholder.com/250x150/e0dcd5/888888?text=Oferta+4" alt="Oferta 4" class="oferta-img">
-                    <div class="card-bar"></div>
-                </article>
-            </div>
-        </section>
+                {% empty %}
+                    <p style="padding-left: 1rem; color: #555;">No hay publicaciones para mostrar. ¡Sé el primero en publicar!</p>
+                {% endfor %}
+                </div> </section>
 
         <section class="category-section bg-white">
             <h3 class="section-title">Cerca de ti</h3>
             
             <h4>Albañería</h4>
-            <div class="scroll-container scroll-snap-x">
-                <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+1" alt="Servicio Albañilería 1" class="item-img">
+            <div class="listing-container">
+                
+                <article class="listing-item">
+                    <div class="listing-img-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
+                    </div>
+                    <div class="listing-info-box">
+                        <p class="listing-desc">Reparación de muros y fachadas.</p>
+                        <p class="listing-price">$15.000</p>
+                    </div>
                 </article>
-                <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+2" alt="Servicio Albañilería 2" class="item-img">
-                </article>
-                <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+3" alt="Servicio Albañilería 3" class="item-img">
-                </article>
-                <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Albanileria+4" alt="Servicio Albañilería 4" class="item-img">
+
+                <article class="listing-item">
+                    <div class="listing-img-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
+                    </div>
+                    <div class="listing-info-box">
+                        <p class="listing-desc">Instalación de cerámicas.</p>
+                        <p class="listing-price">$10.000</p>
+                    </div>
                 </article>
             </div>
         </section>
 
         <section class="category-section">
             <h4>Carpintería</h4>
-            <div class="scroll-container scroll-snap-x">
-                <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+1" alt="Servicio Carpintería 1" class="item-img">
-                </article>
-                <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+2" alt="Servicio Carpintería 2" class="item-img">
-                </article>
-                <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+3" alt="Servicio Carpintería 3" class="item-img">
-                </article>
-                <article class="item-card">
-                    <img src="https://via.placeholder.com/200x120/e0dcd5/888888?text=Carpinteria+4" alt="Servicio Carpintería 4" class="item-img">
+            <div class="listing-container">
+                <article class="listing-item">
+                    <div class="listing-img-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
+                    </div>
+                    <div class="listing-info-box">
+                        <p class="listing-desc">Muebles a medida.</p>
+                        <p class="listing-price">$50.000</p>
+                    </div>
                 </article>
             </div>
         </section>
     </main>
-    <script src="js_home.js"></script>
+    
     <script src="{% static 'js/home.js' %}"></script>
-    <script src="js_home.js"></script>
 
 </body>
 </html>

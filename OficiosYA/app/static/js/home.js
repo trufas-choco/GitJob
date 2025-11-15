@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             // ERROR: No autorizado (no ha iniciado sesión)
             // Lo redirigimos de vuelta al login
             console.warn("Usuario no autenticado. Redirigiendo al login.");
-            window.location.href = 'index.html';
+            window.location.href = '/';
         
         } else {
             // Otro tipo de error del servidor

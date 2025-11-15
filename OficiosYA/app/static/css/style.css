@@ -1,149 +1,119 @@
-/*BODYS PAG*/
+/* ================================================ */
+/* VARIABLES Y ESTILOS GLOBALES            */
+/* ================================================ */
+:root {
+    /* --- Variables de Color --- */
+    --color-primary-blue: #1A237E;
+    --color-primary-blue-dark: #0d1243;
+    --color-primary-red: #7c180e;
+    --color-primary-red-dark: #7a2f2f;
+    --color-dark-red-bg: #4e1a1a;
+    --color-bg-light: #f4f1eb; /* Beige */
+    --color-bg-white: #ffffff;
+    --color-text-dark: #333;
+    --color-text-light: #555;
+    --color-text-white: #ffffff;
+    --color-border: #ccc;
+
+    /* --- Variables de Tipografía --- */
+    --font-main: 'Poppins', Arial, sans-serif;
+
+    /* --- Variables de Bordes --- */
+    --radius-sharp: 8px;   /* Para inputs y cajas */
+    --radius-round: 50px;  /* Para botones */
+}
+
+/* --- Estilo Base del Body --- */
 body {
-    font-family: 'Poppins', Arial, sans-serif;
+    font-family: var(--font-main);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    color: var(--color-text-dark);
 }
 body.bg-blue {
-    background-color: #1A237E;
+    background-color: var(--color-primary-blue);
 }
 body.bg-red {
-    background-color: #4e1a1a;
+    background-color: var(--color-dark-red-bg);
 }
 body.bg-main {
-    background-color: #f4f1eb; 
+    background-color: var(--color-bg-light); 
     display: block; 
-    min-height: 100vh; /* Cambiado para que ocupe toda la altura */
 }
 
-.form-group {
+/* ================================================ */
+/* COMPONENTES ESTANDARIZADOS               */
+/* ================================================ */
+
+/* --- Títulos / Logos --- */
+.logo,
+.signup-title,
+.header-logo {
+    font-size: 1.1rem; /* Base para "Bienvenido a" */
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin: 0 0 0.5rem 0;
+}
+
+.logo span,
+.signup-title span,
+.header-logo {
+    font-size: 2.2rem; /* Tamaño del logo */
+    font-weight: 400;
+    display: block;
     margin-bottom: 0.5rem;
+}
+
+.logo span,
+.signup-title strong,
+.header-logo span {
+    font-weight: 700;
+    color: var(--color-primary-blue);
+}
+
+/* --- Grupos de Formulario --- */
+.form-group {
+    margin-bottom: 1rem;
     text-align: left;
 }
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #555;
-    text-align: left;
+    color: var(--color-text-light);
     padding-left: 0.2rem; 
 }
-.form-group input {
+
+/* --- Inputs Estandarizados --- */
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+textarea {
     width: 100%;
-    border-radius: 8px;
-    padding: 0.8rem;
+    border-radius: var(--radius-sharp);
+    padding: 0.5rem 0.5rem;
     border: none; 
-    box-sizing: border-box; 
+    box-sizing: border-box;
+    font-family: var(--font-main); /* Heredado */
+    font-size: 1rem;
+}
+input:focus, textarea:focus {
+    outline: none;
+}
+textarea {
+    resize: none;
 }
 
-/*login*/
-.login-container {
-    background-color: #ffffff;
-    padding: 2.5rem;
-    border-radius: 30px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-.logo {
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 2rem;
-}
-.logo span {
-    font-weight: 700;
-    color: #1A237E;
-}
-.login-container .form-group input {
-    background-color: #f4f1eb; 
-
-}
-.forgot-password {
-    font-size: 0.9rem;
-    text-align: center;
-    margin-top: -0.5rem;
-    margin-bottom: 1.5rem;
-    margin-top: 1.5rem;
-   
-}
-.forgot-password a {
-    color: #777;
-}
-.btn-submit {
-    width: 100%;
-    padding: 0.8rem;
-    border: none;
-    background-color: #7c180e; 
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 700;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-bottom: 2rem;
-    transition: background-color 0.2s ease;
-}
-.btn-submit:hover {
-    background-color: #7a2f2f;
-}
-.signup-box {
-    background-color: #f4f1eb;
-    padding: 1.2rem;
-    border-radius: 8px;
-}
-.signup-box p {
-    margin: 0 0 0.5rem 0;
-    color: #555;
-}
-.signup-box a {
-    color: #1A237E;
-    font-weight: 700;
-    text-decoration: underline;
-}
-
-/*signup / crear cuenta */
-.signup-container {
-    background-color: #f4f1eb;
-    padding: 2.5rem;
-    border-radius: 30px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-.signup-title {
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: #000000;
-    margin: 0 0 0.1rem 0;
-    margin-top: 0.1rem;
-    margin-bottom: 0.5rem;
-}
-.signup-title span {
-    display: block;
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    font-weight: 200;
-}
-.signup-title strong {
-    font-weight: 700;
-    color: #1A237E;
-}
-.signup-container .form-group input[type="text"],
-.signup-container .form-group input[type="password"] {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding-left: 1.2rem;
-}
+/* --- Wrapper de Teléfono --- */
 .phone-input-wrapper {
     display: flex;
     align-items: center;
-    background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: var(--radius-sharp);
+    width: 100%;
+    box-sizing: border-box;
 }
 .phone-input-wrapper span {
     padding-left: 1rem;
@@ -151,71 +121,166 @@ body.bg-main {
     font-weight: 700;
     font-size: 1rem;
 }
-.phone-input-wrapper input {
+.phone-input-wrapper input[type="tel"] {
     background: none;
     border: none;
-    border-radius: 10;
-    margin-left: 0.5rem;
-    padding-left: 0.5rem;
+    padding: 0.8rem 0.5rem; /* Alinear con inputs */
+    border-radius: 0;
+    margin-left: 0;
 }
-.phone-input-wrapper input:focus {
-    outline: none;
-    box-shadow: none;
-}
-.btn-primary {
-    width: 100%;
-    padding: 0.8rem;
-    border: none;
-    background-color: #1A237E;
-    color: white;
+
+/* --- Botones Estandarizados --- */
+.btn-primary,
+.btn-submit,
+.btn-aceptar,
+.btn-ia,
+.btn-limpiar {
+    padding: 0.8rem 1.5rem;
     font-size: 1.1rem;
     font-weight: 700;
-    border-radius: 50px;
+    border-radius: var(--radius-round);
     cursor: pointer;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    border: none;
+    font-family: var(--font-main);
+    text-align: center;
+    text-decoration: none;
+    width: 100%; /* Por defecto ocupan todo el ancho */
+    box-sizing: border-box;
+}
+
+/* Colores específicos de botones */
+.btn-primary,
+.btn-aceptar {
+    background-color: var(--color-primary-blue);
+    color: var(--color-text-white);
     transition: background-color 0.2s ease;
+    padding: 0.7rem;
 }
-.btn-primary:hover {
-    background-color: #0d1243;
+.btn-primary:hover,
+.btn-aceptar:hover {
+    background-color: var(--color-primary-blue-dark);
 }
-.btn-secondary {
+
+.btn-submit {
+    background-color: var(--color-primary-red);
+    color: var(--color-text-white);
+    transition: background-color 0.2s ease;
+    margin-bottom: 2rem;
+}
+.btn-submit:hover {
+    background-color: var(--color-primary-red-dark);
+}
+
+.btn-ia,
+.btn-limpiar {
+    background-color: var(--color-bg-white);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-dark);
+    text-transform: capitalize;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    padding: 1rem;
+    width: auto; /* Estos botones no ocupan el 100% */
+}
+.btn-ia:hover,
+.btn-limpiar:hover {
+    background-color: #f0f0f0;
+}
+
+.btn-secondary { /* Botón "Volver" de Signup */
     display: flexbox; 
     padding: 0.5rem;
-    background-color: #ffffff;
-    color: #333;
+    background-color: var(--color-bg-white);
+    color: var(--color-text-dark);
     font-size: 1rem;
     font-weight: 700;
-    border-radius: 10px;
+    border-radius: var(--radius-sharp);
     cursor: pointer;
-    
-    text-decoration: salmon;
-    transition: all 0.2s ease;
 }
 .btn-secondary p {
     margin: 0 0 0.1rem 0;
-    color: #555;
+    color: var(--color-text-light);
 }
 
-/* --- CSS para Nombres y Apellidos en la misma línea --- */
+/* ================================================ */
+/* ESTILOS POR PÁGINA                   */
+/* ================================================ */
 
+/* --- Página: Login --- */
+.login-container {
+    background-color: var(--color-bg-white);
+    padding: 2.5rem;
+    border-radius: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.login-container .form-group input,
+.login-container .phone-input-wrapper {
+    background-color: var(--color-bg-light); /* Inputs en beige */
+}
+.forgot-password {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+.forgot-password a {
+    color: #777;
+}
+.signup-box {
+    background-color: var(--color-bg-light);
+    padding: 1.2rem;
+    border-radius: var(--radius-sharp);
+}
+.signup-box p {
+    margin: 0 0 0.5rem 0;
+    color: var(--color-text-light);
+}
+.signup-box a {
+    color: var(--color-primary-blue);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+/* Corrección Autofill del Navegador */
+.login-container input:-webkit-autofill,
+.login-container input:-webkit-autofill:hover,
+.login-container input:-webkit-autofill:focus,
+.login-container input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--color-bg-light) inset !important;
+    -webkit-text-fill-color: var(--color-text-dark) !important;
+}
+
+/* --- Página: Signup / Crear cuenta --- */
+.signup-container {
+    background-color: var(--color-bg-light);
+    padding: 2.5rem;
+    border-radius: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.signup-container .form-group input,
+.signup-container .phone-input-wrapper {
+    background-color: var(--color-bg-white); /* Inputs en blanco */
+}
 .form-row {
     display: flex;
-    align-items: flex-start;  /* Evita que un campo se estire si el otro tiene más texto */
-    gap: 1rem;                /* Pone un espacio de 1rem entre los dos campos */
-    margin-bottom: 1rem;      /* Este es el "interlineado" de esta fila */
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
-
 .form-row .form-group {
-    flex: 1;                  /* Hace que ambos campos ocupen la mitad del espacio (50%) */
-    margin-bottom: 0;         /* Quita el margen de abajo para que no se sume al del .form-row */
+    flex: 1;
+    margin-bottom: 0;
 }
 
-/* --------------------------------------------------- */
-
-/*home / feed */
+/* --- Página: Home / Feed --- */
 .header-main {
-    background-color: #fff;
+    background-color: var(--color-bg-white);
     padding: 0.5rem 1rem;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -224,19 +289,12 @@ body.bg-main {
     z-index: 1000;
 }
 .header-logo {
-    font-size: 2rem;
-    font-weight: 400;
-    color: #333;
     text-align: center;
     margin: 0.5rem 0;
 }
 .header-logo a {
     text-decoration: none;
-    color: #333;
-}
-.header-logo span {
-    font-weight: 700;
-    color: #1A237E;
+    color: var(--color-text-dark);
 }
 .navbar {
     display: flex;
@@ -245,8 +303,8 @@ body.bg-main {
     gap: 1rem;
 }
 .btn-publicar {
-    background-color: #7c180e;
-    color: #fff;
+    background-color: var(--color-primary-red);
+    color: var(--color-text-white);
     padding: 0.5rem 1rem;
     border-radius: 5px;
     text-decoration: none;
@@ -257,7 +315,7 @@ body.bg-main {
 .search-form {
     flex-grow: 1; 
     display: flex;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-border);
     border-radius: 20px;
     overflow: hidden;
     background-color: #f9f9f9;
@@ -267,16 +325,14 @@ body.bg-main {
     background: none;
     padding: 0.5rem 1rem;
     width: 100%;
-}
-.search-form input:focus {
-    outline: none;
+    border-radius: 0; /* Anulación del estilo global */
 }
 .search-form button {
     border: none;
     background: #eee;
     padding: 0 0.8rem;
     cursor: pointer;
-    color: #555;
+    color: var(--color-text-light);
     font-size: 1rem;
 }
 .nav-icons {
@@ -286,13 +342,12 @@ body.bg-main {
 }
 .icon-link {
     text-decoration: none;
-    color: #333;
+    color: var(--color-text-dark);
     font-size: 1.5rem; 
     padding: 0.2rem;
 }
-/* Icono activo en la navbar */
 .icon-link.active {
-    border-bottom: 3px solid #1A237E;
+    border-bottom: 3px solid var(--color-primary-blue);
 }
 .profile-link {
     display: flex;
@@ -307,7 +362,7 @@ body.bg-main {
 .welcome-title {
     font-size: 1.6rem;
     font-weight: 500;
-    color: #1A237E;
+    color: var(--color-primary-blue);
     margin-top: 0;
     margin-bottom: 1.5rem;
 }
@@ -315,21 +370,21 @@ body.bg-main {
     margin-bottom: 2rem;
 }
 .category-section.bg-white {
-    background-color: #fff;
+    background-color: var(--color-bg-white);
     border-radius: 10px;
     padding: 1.5rem;
 }
 .category-section h3 {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #333;
+    color: var(--color-text-dark);
     margin-top: 0;
     margin-bottom: 1rem;
 }
 .category-section h4 {
     font-size: 1.2rem;
     font-weight: 500;
-    color: #555;
+    color: var(--color-text-light);
     margin-top: 0;
     margin-bottom: 1rem;
 }
@@ -366,7 +421,7 @@ body.bg-main {
 .card-bar {
     height: 12px;
     width: 80%;
-    background-color: #1A237E;
+    background-color: var(--color-primary-blue);
     border-radius: 10px;
     margin: 0.5rem auto 0 auto;
 }
@@ -417,67 +472,180 @@ body.bg-main {
     }
 }
 
-/*publicar.html*/
+/* ================================================ */
+/* ESTILOS POR PÁGINA (FIN)             */
+/* ================================================ */
+
+/* --- Página: Publicar --- */
 .publicar-container {
     width: 90%;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 2rem auto;
     padding: 1rem;
+    position: relative; /* Para anclar el botón "volver" */
 }
-.publicar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-.btn-volver {
+
+.btn-volver-link {
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
     text-decoration: none;
-    color: #1A237E;
+    color: var(--color-primary-blue);
     font-weight: 500;
     font-size: 1rem;
+    text-transform: capitalize;
 }
-.btn-volver:hover {
+.btn-volver-link:hover {
     text-decoration: underline;
 }
-.publicar-content {
-    display: flex;
-    gap: 3rem;
+
+.publicar-header {
+    display: none;
 }
-.publicar-info {
-    flex: 1;
-    color: #333;
+
+.publicar-form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna por defecto (móvil) */
+    gap: 2rem 3rem; 
+    width: 100%;
 }
-.publicar-info h2 {
-    font-size: 1.2rem;
+
+.publicar-title-main {
+    font-size: 1.6rem;
     font-weight: 500;
-    color: #1A237E;
-    margin-top: 0;
-}
-.publicar-info ul {
-    list-style-type: '- ';
-    padding-left: 1.5rem;
-    line-height: 1.8;
-}
-.publicar-form {
-    flex: 2;
-}
-.publicar-form h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #1A237E;
+    color: var(--color-primary-blue);
     margin-top: 0;
     margin-bottom: 1rem;
 }
-.publicar-form textarea {
-    width: 100%;
-    height: 300px;
-    background-color: #fff;
+.publicar-form-grid .logo {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    color: var(--color-primary-blue);
+}
+.publicar-form-grid .logo span {
+    color: var(--color-primary-blue);
+}
+
+.grid-item-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+}
+
+.descripcion-container {
+    background-color: var(--color-bg-white);
     border-radius: 25px;
     border: 1px solid #ddd;
     padding: 1.5rem;
-    font-family: 'Poppins', Arial, sans-serif;
+    flex-grow: 1;
+    display: flex;
+}
+.descripcion-container textarea {
+    background: none;
+    flex-grow: 1;
+    min-height: 300px;
+    border-radius: 0; /* Anulación del estilo global */
+}
+
+.form-buttons-container-left {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0rem; 
+    align-items: center;
+    
+}
+
+.grid-item-side {
+    display: flex;
+    flex-direction: column;
     font-size: 1rem;
-    box-sizing: border-box;
-    margin-bottom: 1.5rem;
+
+}
+
+.publicar-info-box {
+    padding: 0 0 1rem 0; 
+    margin-bottom: 1rem;
+    color: var(--color-text-dark);
+    margin-top: 6rem; /* Mueve el bloque hacia abajo */
+}
+.publicar-info-box p {
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+    font-size: 1rem; /* Tamaño de fuente */
+}
+.publicar-info-box ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    list-style-type: none;
+}
+.publicar-info-box li {
+    font-size: 0.9rem; /* Tamaño de fuente */
     line-height: 1.6;
 }
+
+.publicar-title-side {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-dark);
+    margin-bottom: 1rem;
+}
+
+.image-upload-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.image-upload-box {
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-primary-blue);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.image-upload-box svg {
+    color: var(--color-text-white);
+    width: 40%;
+    height: 40%;
+}
+.image-preview {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.price-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.price-group label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    text-transform: capitalize;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.price-group input {
+    flex: 1;
+    padding: 0.4rem;
+    background-color: var(--color-bg-white);
+    border-radius: var(--radius-round); /* Anulación: precio es redondo */
+}
+
+@media (min-width: 768px) {
+    .publicar-form-grid {
+        grid-template-columns: 3fr 2fr; 
+    }
+}
+/* --- FIN DE LA SECCIÓN PUBLICAR --- */

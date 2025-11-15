@@ -5,35 +5,69 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
+
+from .models import Publicacion
 import json
 
+
 # --- Vistas de Plantillas (Corregidas) ---
+@login_required 
+def feed(request):
+    # 1. Obtenemos todas las publicaciones de la base de datos
+    publicaciones = Publicacion.objects.all().order_by('-created_at')
+
+    # 2. Las pasamos al contexto del template
+    context = {
+        'publicaciones': publicaciones
+    }
+    return render(request, 'feed.html', context)
+
 def inicio_sesion(request):
     # CORREGIDO: Apunta a 'login.html' que sí existe en tus plantillas.
     return render(request, 'login.html')
-    
-@login_required # Es buena práctica proteger el feed
-def feed(request):
-    # CORREGIDO: Apunta a 'feed.html' que sí existe en tus plantillas.
-    return render(request, 'feed.html')
 
-# --- Vistas Comentadas (Plantillas Faltantes) ---
-# Has pedido no crear nuevos HTML. Estas vistas no se pueden usar
-# porque sus plantillas ('menu_usuario.html', 'otro_template.html', 
-# 'perfil_pruebaa.html') no están en la carpeta 'templates'.
+@login_required 
+def publicar(request):
+    """
+    Maneja MOSTRAR la página (GET) y GUARDAR la publicación (POST).
+    """
 
-# def menu_usuario(request):
-#     return render(request, 'menu_usuario.html') # Este HTML no existe
-    
-# def otro_template(request):
-#     return render(request, 'otro_template.html') # Este HTML no existe
-        
-# @login_required
-# def mi_perfil(request):
-#      return render(request, 'perfil_pruebaa.html', {'u': request.user}) # Este HTML no existe
+    # --- LÓGICA PARA GUARDAR EL FORMULARIO (POST) ---
+    if request.method == 'POST':
+        # 1. Obtenemos los datos del formulario (de publicar.html)
+        descripcion = request.POST.get('descripcion')
+        precio = request.POST.get('precio')
 
+        # Obtenemos la LISTA de imágenes (ya que el input es 'multiple')
+        imagenes = request.FILES.getlist('imagen')
 
-# --- Vistas de API (NUEVAS - Requeridas por tu JS) ---
+        # 2. Creamos el objeto en la base de datos
+        try:
+            # Guardamos solo la primera imagen (porque el modelo solo tiene un campo)
+            primera_imagen = imagenes[0] if imagenes else None
+
+            if not primera_imagen:
+                # Si no se subió imagen, mostramos un error
+                context = {'error': 'Debes subir al menos una imagen.'}
+                return render(request, 'publicar.html', context)
+
+            Publicacion.objects.create(
+                usuario=request.user,
+                descripcion=descripcion,
+                precio=precio,
+                imagen=primera_imagen # Guardamos la primera imagen
+            )
+
+            # 3. Redirigimos al feed para ver la nueva publicación
+            return redirect('feed')
+
+        except Exception as e:
+            # Manejo básico de errores
+            context = {'error': f'Error al publicar: {e}'}
+            return render(request, 'publicar.html', context)
+
+    # --- LÓGICA PARA MOSTRAR LA PÁGINA (GET) ---
+    return render(request, 'publicar.html')
 
 @csrf_exempt # Necesario para recibir 'fetch' POST desde el frontend
 def api_login(request):
@@ -125,3 +159,6 @@ def registro(request):
 
     # --- LÓGICA PARA MOSTRAR LA PÁGINA (CUANDO SE ENTRA POR PRIMERA VEZ) ---
     return render(request, 'account.html')
+# ... (tus otras vistas como inicio_sesion, feed, api_login, registro)
+
+# --- AÑADE ESTA NUEVA VISTA ---
