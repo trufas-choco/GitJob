@@ -14,15 +14,19 @@
 
 <body class="bg-blue">
     <main class="login-container">
-        <h1 class="logo">
-            oficios<span>YA.cl</span>
+        <h1 class="signup-title">
+            Bienvenid@ a
+            <span>oficios<strong>YA.cl</strong></span>
         </h1>
 
         <form id="login-form" action="/api/login" method="POST">
             
-            <div class="form-group">
-                <label for="phone">Número de teléfono (+56)</label>
-                <input type="tel" id="phone" name="phone" placeholder="9 1234 5678" required>
+            <div class="form-group phone-group">
+                <label for="phone">Número de teléfono</label>
+                <div class="phone-input-wrapper">
+                    <span>+56</span>
+                    <input type="tel" id="phone" name="phone" placeholder="9 1234 5678" inputmode="numeric" required>
+                </div>
             </div>
             
             <div class="form-group">
@@ -37,7 +41,7 @@
             </div>
             <button type="submit" class="btn-submit">Aceptar</button>
         </form>
-        <...
+        
         <div class="signup-box">
             <p>¿No tienes cuenta?</p>
             <a href="{% url 'registro' %}">Crea tu cuenta</a>

@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -75,10 +77,51 @@ def api_user_me(request):
         'username': request.user.username
     })
 
-# ... (al final del archivo, junto con las otras vistas)
-
 def registro(request):
     """
-    Esta vista se encarga de mostrar la página de registro (account.html)
+    Esta vista se encarga de mostrar la página de registro (GET)
+    Y de procesar la creación del usuario (POST).
     """
+
+    # --- LÓGICA PARA CREAR LA CUENTA (CUANDO SE ENVÍA EL FORMULARIO) ---
+    if request.method == 'POST':
+        # 1. Obtenemos los datos del formulario (de account.html)
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        phone = request.POST.get('phone')
+        password = request.POST.get('new-password')
+
+        # 2. Usamos el teléfono como 'username' (para que coincida con tu login)
+        username = phone
+
+        # 3. VERIFICAMOS SI EXISTE
+        # Consultamos la base de datos para ver si ya hay un usuario con ese teléfono
+        if User.objects.filter(username=username).exists():
+            # Si existe, enviamos un error de vuelta al formulario
+            context = {'error': 'El número de teléfono ya está registrado.'}
+            return render(request, 'account.html', context)
+
+        # 4. CREAMOS LA CUENTA
+        # Si no existe, creamos el nuevo usuario
+        try:
+            user = User.objects.create_user(
+                username=username,      # Guardamos el teléfono como username
+                password=password,      # Django encripta la contraseña
+                first_name=first_name,
+                last_name=last_name
+            )
+
+            # 5. (Recomendado) Iniciar sesión automáticamente
+            login(request, user)
+
+            # 6. Redirigir al 'feed' cuando todo sale bien
+            return redirect('feed') # 'feed' es el name= de tu URL en app/urls.py
+
+        except Exception as e:
+            # Por si ocurre cualquier otro error
+            context = {'error': f'Error al crear la cuenta: {e}'}
+            return render(request, 'account.html', context)
+
+
+    # --- LÓGICA PARA MOSTRAR LA PÁGINA (CUANDO SE ENTRA POR PRIMERA VEZ) ---
     return render(request, 'account.html')

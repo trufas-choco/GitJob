@@ -18,18 +18,21 @@ body.bg-main {
     display: block; 
     min-height: 100vh; /* Cambiado para que ocupe toda la altura */
 }
+
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
 }
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     color: #555;
     text-align: left;
-    padding-left: 1rem; 
+    padding-left: 0.2rem; 
 }
 .form-group input {
     width: 100%;
+    border-radius: 8px;
     padding: 0.8rem;
     border: none; 
     box-sizing: border-box; 
@@ -39,7 +42,7 @@ body.bg-main {
 .login-container {
     background-color: #ffffff;
     padding: 2.5rem;
-    border-radius: 10px;
+    border-radius: 30px;
     width: 90%;
     max-width: 400px;
     text-align: center;
@@ -58,23 +61,24 @@ body.bg-main {
 }
 .login-container .form-group input {
     background-color: #f4f1eb; 
-    border-radius: 8px; 
+
 }
 .forgot-password {
     font-size: 0.9rem;
     text-align: center;
     margin-top: -0.5rem;
     margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+   
 }
 .forgot-password a {
     color: #777;
-    text-decoration: none;
 }
 .btn-submit {
     width: 100%;
     padding: 0.8rem;
     border: none;
-    background-color: #9A3B3B; 
+    background-color: #7c180e; 
     color: white;
     font-size: 1.1rem;
     font-weight: 700;
@@ -107,48 +111,51 @@ body.bg-main {
     padding: 2.5rem;
     border-radius: 30px;
     width: 90%;
-    max-width: 450px; 
+    max-width: 400px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    margin: 2rem 0;
 }
 .signup-title {
     font-size: 1.1rem;
     font-weight: 400;
-    color: #1A237E;
-    margin-top: 0;
+    color: #000000;
+    margin: 0 0 0.1rem 0;
+    margin-top: 0.1rem;
     margin-bottom: 0.5rem;
 }
 .signup-title span {
     display: block;
     font-size: 2.2rem;
-    font-weight: 400;
+    margin-bottom: 0.5rem;
+    font-weight: 200;
 }
-.signup-title span strong {
+.signup-title strong {
     font-weight: 700;
+    color: #1A237E;
 }
 .signup-container .form-group input[type="text"],
 .signup-container .form-group input[type="password"] {
     background-color: #ffffff;
-    border-radius: 50px;
+    border-radius: 8px;
     padding-left: 1.2rem;
 }
 .phone-input-wrapper {
     display: flex;
     align-items: center;
     background-color: #ffffff;
-    border-radius: 50px;
+    border-radius: 8px;
 }
 .phone-input-wrapper span {
-    padding-left: 1.2rem;
-    color: #333;
+    padding-left: 1rem;
+    color: #5e5e5e;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 .phone-input-wrapper input {
     background: none;
     border: none;
-    border-radius: 0;
+    border-radius: 10;
+    margin-left: 0.5rem;
     padding-left: 0.5rem;
 }
 .phone-input-wrapper input:focus {
@@ -173,18 +180,38 @@ body.bg-main {
     background-color: #0d1243;
 }
 .btn-secondary {
-    display: inline-block; 
-    padding: 0.7rem 2.5rem;
-    border: 1px solid #ccc; 
+    display: flexbox; 
+    padding: 0.5rem;
     background-color: #ffffff;
     color: #333;
     font-size: 1rem;
     font-weight: 700;
-    border-radius: 50px;
+    border-radius: 10px;
     cursor: pointer;
-    text-decoration: none;
+    
+    text-decoration: salmon;
     transition: all 0.2s ease;
 }
+.btn-secondary p {
+    margin: 0 0 0.1rem 0;
+    color: #555;
+}
+
+/* --- CSS para Nombres y Apellidos en la misma línea --- */
+
+.form-row {
+    display: flex;
+    align-items: flex-start;  /* Evita que un campo se estire si el otro tiene más texto */
+    gap: 1rem;                /* Pone un espacio de 1rem entre los dos campos */
+    margin-bottom: 1rem;      /* Este es el "interlineado" de esta fila */
+}
+
+.form-row .form-group {
+    flex: 1;                  /* Hace que ambos campos ocupen la mitad del espacio (50%) */
+    margin-bottom: 0;         /* Quita el margen de abajo para que no se sume al del .form-row */
+}
+
+/* --------------------------------------------------- */
 
 /*home / feed */
 .header-main {
@@ -218,7 +245,7 @@ body.bg-main {
     gap: 1rem;
 }
 .btn-publicar {
-    background-color: #9A3B3B;
+    background-color: #7c180e;
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 5px;
