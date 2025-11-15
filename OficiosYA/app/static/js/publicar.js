@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    const latInput = document.getElementById('latitude');
+    const lonInput = document.getElementById('longitude');
+
+    if (navigator.geolocation) {
+        // Le pide al navegador la ubicación
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                // ÉXITO: El usuario aceptó
+                console.log('Ubicación obtenida:', position.coords.latitude, position.coords.longitude);
+                // Rellenamos los campos ocultos del formulario
+                if(latInput) latInput.value = position.coords.latitude;
+                if(lonInput) lonInput.value = position.coords.longitude;
+            },
+            function(error) {
+                // ERROR: El usuario denegó el permiso o hubo un fallo
+                console.warn('Error de geolocalización:', error.message);
+            }
+        );
+    } else {
+        console.warn('La geolocalización no es soportada por este navegador.');
+    }
     const imagenInput = document.getElementById('imagen');
     // Obtenemos las 3 cajas de vista previa
     const previewBoxes = [

@@ -480,9 +480,9 @@ textarea {
 .publicar-container {
     width: 90%;
     max-width: 1100px;
-    margin: 2rem auto;
+    margin: 0 auto; /* <-- CORREGIDO */
     padding: 1rem;
-    position: relative; /* Para anclar el botón "volver" */
+    position: relative; 
 }
 
 .btn-volver-link {
@@ -514,8 +514,8 @@ textarea {
     font-size: 1.6rem;
     font-weight: 500;
     color: var(--color-primary-blue);
-    margin-top: 0;
-    margin-bottom: 1rem;
+    margin-top: 4;
+ 
 }
 .publicar-form-grid .logo {
     margin: 0 0 0.5rem 0;
@@ -560,6 +560,7 @@ textarea {
     display: flex;
     flex-direction: column;
     font-size: 1rem;
+    margin-top: 0rem;
 
 }
 
@@ -567,7 +568,7 @@ textarea {
     padding: 0 0 1rem 0; 
     margin-bottom: 1rem;
     color: var(--color-text-dark);
-    margin-top: 6rem; /* Mueve el bloque hacia abajo */
+    margin-top: 0rem; /* Mueve el bloque hacia abajo */
 }
 .publicar-info-box p {
     margin: 0 0 0.5rem 0;
@@ -649,3 +650,280 @@ textarea {
     }
 }
 /* --- FIN DE LA SECCIÓN PUBLICAR --- */
+
+
+/* --- CSS Adicional para el link del feed --- */
+a.oferta-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ================================================ */
+/* --- Página: Detalle Publicación --- */
+/* ================================================ */
+
+.detalle-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna en móvil */
+    gap: 2rem 3rem;
+    max-width: 900px;
+    margin: 1rem auto;
+}
+
+.detalle-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.detalle-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.detalle-carrusel {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-primary-blue);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text-white);
+    overflow: hidden; /* Para la imagen */
+}
+.detalle-carrusel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; 
+}
+.detalle-carrusel span {
+    display: none; /* Oculta el texto "*carrusel*" si hay una imagen */
+}
+
+/* Cajas de info (precio, lugar, vendedor, etc.) */
+.detalle-info-box {
+    background-color: var(--color-bg-white);
+    border-radius: var(--radius-sharp);
+    padding: 0.5rem 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.detalle-info-box label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-primary-blue);
+    margin-bottom: 0.25rem;
+    text-transform: capitalize;
+}
+.detalle-info-box span {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+/* Cajas de info con fondo de color */
+.detalle-info-box.telefono,
+.detalle-info-box.lugar {
+    background-color: var(--color-primary-blue);
+}
+.detalle-info-box.telefono label,
+.detalle-info-box.lugar label {
+    color: rgba(255, 255, 255, 0.8);
+}
+.detalle-info-box.telefono span,
+.detalle-info-box.lugar span {
+    color: var(--color-text-white);
+}
+
+/* Caja de descripción */
+.detalle-descripcion {
+    background-color: var(--color-bg-white);
+    border-radius: var(--radius-sharp);
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    flex-grow: 1; /* Ocupa el espacio disponible */
+    min-height: 250px;
+}
+.detalle-descripcion label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-primary-blue);
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+}
+.detalle-descripcion p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    margin: 0;
+}
+
+/* Media query para 2 columnas en desktop */
+@media (min-width: 768px) {
+    .detalle-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.publicar-title-main {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary-blue);
+    margin: 0;
+    display: none; /* <-- AÑADE ESTO PARA OCULTAR EL TÍTULO DUPLICADO */
+}
+
+
+
+/* ================================================ */
+/* --- Página: Perfil de Usuario --- */
+/* ================================================ */
+
+.profile-header {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 1.5rem;
+}
+.profile-icon {
+    font-size: 4rem;
+    color: var(--color-primary-blue);
+    line-height: 1;
+}
+.profile-username {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin: 0.5rem 0 0 0;
+}
+
+.profile-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+.profile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-weight: 500;
+}
+.nav-item-icon {
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--color-primary-red);
+}
+.profile-nav-item span {
+    text-transform: capitalize;
+    margin-top: 0.5rem;
+}
+.profile-nav-item .nav-item-icon:nth-child(2) {
+    color: #b0a000; /* Color diferente para "guardados" */
+}
+.profile-nav-item .nav-item-icon:nth-child(3) {
+    color: #d3a000; /* Color diferente para "opiniones" */
+}
+
+/* Reutilizamos .listing-container de "Cerca de ti" */
+/* Ajuste para la imagen en la cuadrícula de perfil */
+.listing-img-link {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-primary-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.listing-img-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ================================================ */
+/* --- Página: Perfil de Usuario --- */
+/* ================================================ */
+
+.profile-header {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 1.5rem;
+}
+.profile-icon {
+    font-size: 4rem;
+    color: var(--color-primary-blue);
+    line-height: 1;
+}
+.profile-username {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin: 0.5rem 0 0 0;
+}
+
+.profile-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+.profile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-weight: 500;
+}
+.nav-item-icon {
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--color-primary-red);
+}
+.profile-nav-item span {
+    text-transform: capitalize;
+    margin-top: 0.5rem;
+}
+/* Este es un selector avanzado para cambiar el color de los iconos */
+.profile-nav-item:nth-child(2) .nav-item-icon {
+    color: var(--color-primary-blue); /* "Guardados" en azul */
+}
+.profile-nav-item:nth-child(3) .nav-item-icon {
+    color: #e6b800; /* "Opiniones" en amarillo */
+}
+
+
+/* Reutilizamos .listing-container de "Cerca de ti" */
+/* Ajuste para la imagen en la cuadrícula de perfil */
+.listing-img-link {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-primary-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px 0 0 8px; /* Redondea solo el lado de la imagen */
+}
+.listing-img-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

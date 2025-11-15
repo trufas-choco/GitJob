@@ -6,6 +6,11 @@ class Publicacion(models.Model):
     descripcion = models.TextField()
     precio = models.PositiveIntegerField()
     imagen = models.ImageField(upload_to='publicaciones/') 
+    # --- AÑADE ESTAS DOS LÍNEAS ---
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
+    region = models.CharField(max_length=100, null=True, blank=True)
+    # ---------------------------------
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

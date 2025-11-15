@@ -14,74 +14,87 @@
 
 <body class="bg-main">
 
-    <div class="publicar-container">
-        
-        <a href="{% url 'feed' %}" class="btn-volver-link">volver</a>
-            
-        <form class="publicar-form-grid" action="{% url 'publicar' %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            <div class="grid-item-main">
-                <h1 class="signup-title">
-                    <span>oficios<strong>YA.cl</strong></span>
-                </h1>
-                <h2 class="publicar-title-main">¿Qué desea publicar?</h2>
-                
-                <div class="descripcion-container">
-                    <textarea id="descripcion" name="descripcion" placeholder="Escriba aquí la descripción de su producto..."></textarea>
-                </div>
-                
-                <div class="form-buttons-container-left">
-                    <button type="submit" name="generate_ia" class="btn-secondary btn-ia">Generar Con IA</button>
-                    <button type="button" class="btn-secondary btn-limpiar" onclick="document.getElementById('descripcion').value = '';">Limpiar</button>
-                </div>
+    <header class="header-main">
+        <h1 class="header-logo"><a href="{% url 'feed' %}">oficios<span>YA.cl</span></a></h1>
+        <nav class="navbar">
+            <a href="{% url 'publicar' %}" class="btn-publicar">PUBLICAR</a>            
+            <form action="#" class="search-form">
+                <input type="text" placeholder="Buscar">
+                <button type="submit">🔍</button>
+            </form>
+            <div class="nav-icons">
+                <a href="mensajes.html" class="icon-link">💬</a>
+                <a href="{% url 'perfil' %}" class="icon-link profile-link">
+                    <span>👤</span>
+                    Perfil
+                </a>
             </div>
+        </nav>
+    </header>
 
-            <div class="grid-item-side">
-                <div class="publicar-info-box">
-                    <p>Recuerde incluir informacion como:</p>
-                    <ul>
-                        <li>- Tipo de producto</li>
-                        <li>- Margen de precios</li>
-                        <li>- Material</li>
-                        <li>- Tiempos estimados de entrega</li>
-                    </ul>
-                </div>
-
-                <h3 class="publicar-title-side">Agregar imagenes</h3>
-                
-                <div class="image-upload-container">
-                    <label for="imagen" class="image-upload-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
-                        <img id="preview-1" class="image-preview" alt="Vista previa 1">
-                    </label>
-                    <label for="imagen" class="image-upload-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
-                        <img id="preview-2" class="image-preview" alt="Vista previa 2">
-                    </label>
-                    <label for="imagen" class="image-upload-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
-                        <img id="preview-3" class="image-preview" alt="Vista previa 3">
-                    </label>
-                </div>
-                <input type="file" id="imagen" name="imagen" accept="image/*" multiple style="display: none;">
-
-                <div class="form-group price-group">
-                    <label for="precio">Precio:</label>
-                    <input type="number" id="precio" name="precio" step="1" required>
-                </div>
-
-                <button type="submit" class="btn-primary btn-aceptar">Aceptar</button>
-            </div>
+    <main class="content-wrapper">
+        <div class="publicar-container">
             
-            {% if error %}
-            <p class="form-error">{{ error }}</p>
-            {% endif %}
+            <form class="publicar-form-grid" action="{% url 'publicar' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude">
 
-        </form>
-    </div>
+                <div class="grid-item-main">
+                    
+                    <h2 class="publicar-title-main">¿Qué desea publicar?</h2>
+                    
+                    <div class="descripcion-container">
+                        <textarea id="descripcion" name="descripcion" placeholder="Escriba aquí la descripción de su producto..."></textarea>
+                    </div>
+                    <div class="form-buttons-container-left">
+                        <button type="submit" name="generate_ia" class="btn-secondary btn-ia">Generar Con IA</button>
+                        <button type="button" class="btn-secondary btn-limpiar" onclick="document.getElementById('descripcion').value = '';">Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="grid-item-side">
+                    <div class="publicar-info-box">
+                        <p>Recuerde incluir informacion como:</p>
+                        <ul>
+                            <li>- Tipo de producto</li>
+                            <li>- Margen de precios</li>
+                            <li>- Material</li>
+                            <li>- Tiempos estimados de entrega</li>
+                        </ul>
+                    </div>
+                    <h3 class="publicar-title-side">Agregar imagenes</h3>
+                    <div class="image-upload-container">
+                        <label for="imagen" class="image-upload-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
+                            <img id="preview-1" class="image-preview" alt="Vista previa 1">
+                        </label>
+                        <label for="imagen" class="image-upload-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
+                            <img id="preview-2" class="image-preview" alt="Vista previa 2">
+                        </label>
+                        <label for="imagen" class="image-upload-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
+                            <img id="preview-3" class="image-preview" alt="Vista previa 3">
+                        </label>
+                    </div>
+                    <input type="file" id="imagen" name="imagen" accept="image/*" multiple style="display: none;">
+                    <div class="form-group price-group">
+                        <label for="precio">Precio:</label>
+                        <input type="number" id="precio" name="precio" step="1" required>
+                    </div>
+                    <button type="submit" class="btn-primary btn-aceptar">Aceptar</button>
+                </div>
+                
+                {% if error %}
+                <p class="form-error">{{ error }}</p>
+                {% endif %}
+
+            </form>
+        </div>
+    </main>
 
     <script src="{% static 'js/publicar.js' %}"></script>
 </body>
-
 </html>

@@ -10,9 +10,13 @@ urlpatterns = [
 
     # --- AÑADE ESTA LÍNEA ---
     path('publicar/', views.publicar, name='publicar'),
+
+    path('perfil/', views.perfil, name='perfil'),
+
     # -------------------------
-    
+    path('publicacion/<int:pk>/', views.publicacion_detalle, name='publicacion_detalle'),
     # --- APIs NUEVAS ---
     path('api/login', views.api_login, name='api_login'),
+    path('api/publicaciones_cercanas/', views.api_publicaciones_cercanas, name='api_publicaciones_cercanas'),
     # ... (el resto de tus rutas)
 ]
