@@ -9,19 +9,35 @@ from .models import Publicacion
 import json
 import math
 import requests
-
+from django.db.models import Q
 # --- Vistas de Plantillas ---
 
 @login_required 
+
+
+@login_required
 def feed(request):
-    # 1. Obtenemos todas las publicaciones de la base de datos
+    # 1. Capturamos el texto del buscador (si existe)
+    query = request.GET.get('q', '').strip()
+
+    # 2. Obtenemos todas las publicaciones ordenadas por fecha
     publicaciones = Publicacion.objects.all().order_by('-created_at')
 
-    # 2. Las pasamos al contexto del template
+    # 3. Si el usuario buscó algo, filtramos
+    if query:
+        publicaciones = publicaciones.filter(
+            Q(usuario__username__icontains=query) |   # nombre del usuario
+            Q(descripcion__icontains=query)       |   # descripción del aviso
+            Q(region__icontains=query)                # región
+        )
+
+    # 4. Mandamos todo al template
     context = {
-        'publicaciones': publicaciones
+        'publicaciones': publicaciones,
+        'query': query,
     }
     return render(request, 'feed.html', context)
+
 
 def inicio_sesion(request):
     # Apunta a 'login.html'

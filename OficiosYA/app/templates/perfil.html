@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title>Mi Perfil - OficiosYA</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -8,18 +9,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="bg-main">
 
     <header class="header-main">
         <h1 class="header-logo"><a href="{% url 'feed' %}">oficios<span>YA.cl</span></a></h1>
         <nav class="navbar">
-            <a href="{% url 'publicar' %}" class="btn-publicar">PUBLICAR</a>            
+            <a href="{% url 'publicar' %}" class="btn-publicar">PUBLICAR</a>
             <form action="#" class="search-form">
                 <input type="text" placeholder="Buscar">
                 <button type="submit">🔍</button>
             </form>
             <div class="nav-icons">
-                <a href="mensajes.html" class="icon-link">💬</a>
                 <a href="{% url 'perfil' %}" class="icon-link profile-link active"> <span>👤</span>
                     Perfil
                 </a>
@@ -52,9 +53,9 @@
 
         <section class="category-section bg-white">
             <h3 class="section-title">Publicaciones activas</h3>
-            
+
             <div class="listing-container">
-                
+
                 {% for p in publicaciones %}
                 <article class="listing-item">
                     <a href="{% url 'publicacion_detalle' p.id %}" class="listing-img-link">
@@ -73,8 +74,9 @@
         </section>
 
     </main>
-    
+
     <script src="{% static 'js/home.js' %}"></script>
 
 </body>
+
 </html>
